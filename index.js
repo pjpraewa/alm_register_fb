@@ -20,7 +20,7 @@ app.get('/regispopup', function(req, res) {
 //     console.log("Host "+ host+ ":"+port)
 //  });
 
-app.listen(process.env.PORT || 8084, function(){
+app.listen(process.env.PORT || 4000, function(){
     console.log('Your node js server is running');
 });
     
