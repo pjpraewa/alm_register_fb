@@ -45,6 +45,7 @@ limitations under the License.
      * Function called when clicking the Login/Logout button.
      */
     // [START buttoncallback]
+    var token = null;
     function toggleSignIn() {
       if (!firebase.auth().currentUser) {
         // [START createprovider]
@@ -57,7 +58,7 @@ limitations under the License.
         firebase.auth().signInWithPopup(provider).then(function(result) {
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         //  alert(result.additionalUserInfo.isNewUser);
-          var token = result.credential.accessToken;
+          token = result.credential.accessToken;
           // The signed-in user info.
           var user = result.user;
           // [START_EXCLUDE]
@@ -77,7 +78,9 @@ limitations under the License.
           var credential = error.credential;
           // [START_EXCLUDE]
           if (errorCode === 'auth/account-exists-with-different-credential') {
-            alert("คุณเคยลงทะเบียนแล้ว กรุณา login ใหม่อีกครั้งด้วยอีเมล \n  An account already exists with the same email address but different sign-in credentials. Sign in using a provider associated with this email address.");
+            document.getElementById("user-detail").style.display ="none";            
+            alert("คุณเคยลงทะเบียนแล้ว กรุณา login ใหม่อีกครั้งด้วยอีเมล \n  The email is taken, Please use your email and password to log into 7App.");
+            document.getElementById('quickstart-sign-in').disabled = false;
             firebase.auth().signOut();
             // If you are using multiple auth providers on your app you should handle linking
             // the user's accounts here.
@@ -114,7 +117,6 @@ limitations under the License.
       document.getElementById("detail").style.display ="none";
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-          console.log(user.displayName);
           // User is signed in.
           var displayName = user.displayName;
           var email = user.email;
@@ -124,19 +126,22 @@ limitations under the License.
           var uid = user.uid;
           var providerData = user.providerData;
           var a =document.getElementById("resulttoken").textContent
-        //   if(document.getElementById("resulttoken").textContent != 'null'){
-               alert("ลงทะเบียนด้วย Facebook สำเร็จ \n Success");
-        //   }
+          if(token !== null){
+             alert("ลงทะเบียนด้วย Facebook สำเร็จ \n Success");
+             document.getElementById("user-detail").style.display ="block";
+             document.getElementById('quickstart-sign-in').disabled =true;
+          }
+         
          
           // [START_EXCLUDE]
-        document.getElementById('resultid').textContent= user.providerData[0].uid;
-        document.getElementById('resultname').textContent= user.displayName;
+        // document.getElementById('resultid').textContent= user.providerData[0].uid;
+        // document.getElementById('resultname').textContent= user.displayName;
         // document.getElementById('resulttoken').textContent = token;
         // document.getElementById('resultnewuser').textContent = result.additionalUserInfo.isNewUser;
 
-          document.getElementById("user-detail").style.display ="block";
+          //  document.getElementById("user-detail").style.display ="block";
           document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
-          document.getElementById('quickstart-sign-in').disabled =true;
+          // document.getElementById('quickstart-sign-in').disabled =true;
           document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
           // [END_EXCLUDE]
         } else {
