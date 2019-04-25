@@ -22,23 +22,17 @@ limitations under the License.
 
   <!-- Material Design Theming -->
   <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
-  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
-  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script> 
-  
-  <script>
-  // Initialize Firebase
-      var config = {
-      apiKey: "AIzaSyC20miEKlOq631nYISZwv7rGv75Tac7wvY",
-      authDomain: "allmember-22356.firebaseapp.com",
-      databaseURL: "https://allmember-22356.firebaseio.com",
-      projectId: "allmember-22356",
-      storageBucket: "allmember-22356.appspot.com",
-      messagingSenderId: "498800564085"
-      };
-      firebase.initializeApp(config);
-  </script>
+  <link rel="stylesheet" href="main.css">
+
+  <!-- Import and configure the Firebase SDK -->
+  <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+  <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+  <script src="/__/firebase/5.9.2/firebase-app.js"></script>
+  <script src="/__/firebase/5.9.2/firebase-auth.js"></script>
+  <script src="/__/firebase/init.js"></script>
 
   <script type="text/javascript">
 

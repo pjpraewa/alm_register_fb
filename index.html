@@ -61,6 +61,7 @@ limitations under the License.
           token = result.credential.accessToken;
           // The signed-in user info.
           var user = result.user;
+
           // [START_EXCLUDE]
         //   document.getElementById('resultid').textContent= result.user.providerData.uid;
         document.getElementById('resultid').textContent= user.providerData[0].uid;
@@ -86,6 +87,8 @@ limitations under the License.
             // the user's accounts here.
           }
             else if(errorCode ==='auth/popup-closed-by-user'){
+              document.getElementById('quickstart-sign-in').disabled = false;
+            }else if(errorCode ==='auth/user-cancelled'){
               document.getElementById('quickstart-sign-in').disabled = false;
             }
            else {
