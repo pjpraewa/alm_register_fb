@@ -90,6 +90,9 @@ limitations under the License.
               document.getElementById('quickstart-sign-in').disabled = false;
             }else if(errorCode ==='auth/user-cancelled'){
               document.getElementById('quickstart-sign-in').disabled = false;
+            }else if(errorCode ==='auth/user-disabled'){
+              alert("อีเมลขอคุณถูกระงับการใช้งานกรุณาติดต่อ Call Center \n The user account has been disabled . Please contact call center.");
+              document.getElementById('quickstart-sign-in').disabled = false;
             }
            else {
             console.error(error);
